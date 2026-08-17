@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#18251f">
+  <meta name="description" content="Victorio Tripode Work — agenda, clientes, productoras y finanzas.">
+  <title>Victorio Tripode Work</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/logo-v.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand" role="button" tabindex="0" data-nav="agenda">
+        <img class="brand-v" src="assets/logo-v.png" alt="">
+        <div class="brand-copy">
+          <div class="brand-name">VICTORIO TRIPODE</div>
+          <div class="brand-sub">WORK</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="privacyBtn" class="icon-btn" title="Modo discreto" aria-label="Modo discreto">
+          <span class="privacy-icon">◉</span>
+        </button>
+        <button id="newJobBtn" class="primary-btn">+ NUEVO TRABAJO</button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section id="view-agenda" class="view active">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">AGENDA</p>
+            <h1>Próximos trabajos</h1>
+            <p class="muted" id="todayLabel"></p>
+          </div>
+          <div class="segmented">
+            <button class="seg active" data-agenda-mode="list">Próximos</button>
+            <button class="seg" data-agenda-mode="calendar">Calendario</button>
+          </div>
+        </div>
+
+        <div id="agendaList"></div>
+        <div id="calendarView" class="calendar-wrap hidden"></div>
+      </section>
+
+      <section id="view-trabajos" class="view">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">TRABAJOS</p>
+            <h1>Todos los trabajos</h1>
+          </div>
+          <div class="filters">
+            <input id="jobsSearch" class="search" placeholder="Buscar cliente, salón, ciudad, productora…">
+            <select id="jobsFilter" class="select">
+              <option value="all">Todos</option>
+              <option value="propio">Propios</option>
+              <option value="productora">Productoras</option>
+              <option value="pendiente">Pendientes de cobro</option>
+            </select>
+          </div>
+        </div>
+        <div id="jobsTable" class="cards-grid"></div>
+      </section>
+
+      <section id="view-contactos" class="view">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">CONTACTOS</p>
+            <h1>Personas y productoras</h1>
+          </div>
+        </div>
+        <div class="contact-tabs">
+          <button class="seg active" data-contact-tab="clientes">Clientes</button>
+          <button class="seg" data-contact-tab="productoras">Productoras</button>
+          <button class="seg" data-contact-tab="equipo">Equipo</button>
+        </div>
+        <div id="contactsList" class="cards-grid"></div>
+      </section>
+
+      <section id="view-finanzas" class="view">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">FINANZAS</p>
+            <h1>Resumen del negocio</h1>
+          </div>
+          <select id="financeMonth" class="select"></select>
+        </div>
+        <div id="financeContent"></div>
+      </section>
+
+      <section id="view-ajustes" class="view">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">AJUSTES</p>
+            <h1>Victorio Tripode Work</h1>
+          </div>
+        </div>
+        <div class="settings-card">
+          <h3>Datos y sincronización</h3>
+          <p>Esta primera versión funciona localmente en este navegador y ya tiene lista la estructura para conectarla a Supabase.</p>
+          <div class="settings-actions">
+            <button id="exportBtn" class="secondary-btn">Exportar backup JSON</button>
+            <label class="secondary-btn file-label">
+              Importar backup
+              <input type="file" id="importInput" accept=".json">
+            </label>
+            <button id="resetDemoBtn" class="danger-btn">Restaurar datos demo</button>
+          </div>
+        </div>
+        <div class="settings-card">
+          <h3>Próximo paso: nube</h3>
+          <p>Cuando conectemos Supabase, la misma agenda quedará sincronizada entre celular, PC y Mac con login privado.</p>
+          <code>supabase/schema.sql</code>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-nav="agenda"><span>◷</span><small>Agenda</small></button>
+      <button class="nav-item" data-nav="trabajos"><span>▦</span><small>Trabajos</small></button>
+      <button class="nav-item" data-nav="contactos"><span>◎</span><small>Contactos</small></button>
+      <button class="nav-item" data-nav="finanzas"><span>$</span><small>Finanzas</small></button>
+      <button class="nav-item" data-nav="ajustes"><span>⚙</span><small>Ajustes</small></button>
+    </nav>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <div id="jobModal" class="modal">
+      <button id="modalClose" class="modal-close" aria-label="Cerrar">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

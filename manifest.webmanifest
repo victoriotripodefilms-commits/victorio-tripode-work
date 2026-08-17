@@ -1,0 +1,17 @@
+{
+  "name": "Victorio Tripode Work",
+  "short_name": "VT Work",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f1eb",
+  "theme_color": "#18251f",
+  "description": "Agenda y gestión interna de Victorio Tripode Films.",
+  "icons": [
+    {
+      "src": "assets/logo-v.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
